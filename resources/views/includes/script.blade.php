@@ -16,10 +16,10 @@
 <script src="{{ asset('be/dist/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('be/datatatables/jquery-datatables.js') }}"></script>
+<script src="{{ asset('be/datatatables/datatables.min.js') }}"></script>
+<script src="{{ asset('be/datatatables/datatablesResponsive.min.js') }}"></script>
+<script src="{{ asset('be/datatatables/datatablesReponsiveBoostrap4.min.js') }}"></script>
 
 <script src="{{ asset('be/sweetalert.js') }}"></script>
 

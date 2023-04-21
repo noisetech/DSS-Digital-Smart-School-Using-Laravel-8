@@ -1,12 +1,12 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">SIAKAD</a>
+            <a href="index.html">DSS <p>(Digital Smart School)</p></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
         </div>
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu mt-4">
             <li><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
             </li>
 
@@ -18,7 +18,8 @@
                     <li><a href="{{ route('kalender_akademik') }}">Kalender Akademik</a></li>
                     <li><a href="{{ route('jurusan') }}">Jurusan</a></li>
                     <li><a href="{{ route('kelas') }}">Kelas</a></li>
-                    <li><a href="auth-register.html">Guru</a></li>
+                    <li><a href="{{ route('mata_pelajaran') }}">Mata Pelajaran</a></li>
+                    <li><a href="{{ route('guru') }}">Guru</a></li>
                     <li><a href="auth-register.html">Siswa</a></li>
                     <li><a href="{{ route('ekstrakurikuler') }}">Ekstrakurikuler </a></li>
                 </ul>
@@ -49,7 +50,7 @@
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i> <span>Akademik</span></a>
                 <ul class="dropdown-menu">
-
+                    <li><a href="auth-login.html">Kegiatan Akademik</a></li>
                     <li><a href="auth-login.html">Tugas</a></li>
                     <li><a href="auth-register.html">Absensi</a></li>
                     <li><a href="auth-register.html">E-Raport</a></li>

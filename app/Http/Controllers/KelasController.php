@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jurusan;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -108,6 +109,7 @@ class KelasController extends Controller
 
         $kelas = Kelas::find($request->id);
         $kelas->kelas = $request->kelas;
+        $kelas->jurusan_id = $request->jurusan_id;
         $kelas->save();
 
         if ($kelas) {
@@ -154,6 +156,7 @@ class KelasController extends Controller
         } else {
             $jurusan = Jurusan::select("id", "nama_jurusan")
                 ->get();
+
             $response = array();
             foreach ($jurusan as $j) {
                 $response[] = array(
@@ -166,7 +169,22 @@ class KelasController extends Controller
     }
 
 
-    public function jurusanByKelas(Request $request)
+    public function jurusanByKelas($id)
     {
+        $jurusan = DB::table('kelas')
+            ->select('jurusan.id as id_jurusan', 'jurusan.nama_jurusan as nama_jurusan')
+            ->join('jurusan', 'jurusan.id', '=', 'kelas.jurusan_id')
+            ->where('kelas.id', $id)
+            ->get();
+
+        $response = array();
+        foreach ($jurusan as $j) {
+            $response[] = array(
+                'id' => $j->id_jurusan,
+                'text' => $j->nama_jurusan
+            );
+        }
+
+        return response()->json($response);
     }
 }

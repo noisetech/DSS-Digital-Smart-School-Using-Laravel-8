@@ -41,8 +41,10 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="#" method="POST" id="form_tambah_kelas">
+                    <form action="#" method="POST" id="form_edit_kelas">
                         @csrf
+
+                        <input type="hidden" name="id" value="{{ $kelas->id }}">
 
                         <div class="form-group">
                             <label for="">Jurusan:</label>
@@ -52,7 +54,7 @@
 
                         <div class="form-group">
                             <label for="">Kelas:</label>
-                            <input type="text" class="form-control" name="kelas">
+                            <input type="text" class="form-control" name="kelas" value="{{ $kelas->kelas }}">
 
                             <span class="text-danger error-text kelas_error" style="font-size: 12px;"></span>
                         </div>
@@ -71,11 +73,11 @@
 
 @push('script')
     <script>
-        $("#form_tambah_kelas").submit(function(e) {
+        $("#form_edit_kelas").submit(function(e) {
             e.preventDefault();
             const fd = new FormData(this);
             $.ajax({
-                url: '{{ route('kelas.p_tambah') }}',
+                url: '{{ route('kelas.p_edit') }}',
                 method: 'post',
                 data: fd,
                 cache: false,
@@ -108,8 +110,6 @@
                 }
             });
         });
-
-
         $(document).ready(function() {
             $('.jurusan').select2({
                 width: '100%',
@@ -132,6 +132,23 @@
                     }
                 }
             });
+        });
+    </script>
+
+    <script>
+        let kelas_id = {{ $kelas->id }};
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('dashboard/kelas/listJurusan') }}/" + kelas_id,
+
+        }).then(function(data) {
+            for (i = 0; i < data.length; i++) {
+                // selected
+                var newOption = new Option(data[i].text, data[i].id, true,
+                    true);
+                $('.jurusan').append(newOption).trigger('change');
+            }
         });
     </script>
 @endpush

@@ -1,24 +1,24 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelas')
+@section('title', 'Mata Pelajaran')
 @section('content')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kelas</h1>
+                <h1>Mata Pelajaran</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
                     {{-- <div class="breadcrumb-item"><a href="#">Tag</a></div> --}}
-                    <div class="breadcrumb-item">Kelas</div>
+                    <div class="breadcrumb-item">Mata Pelajaran</div>
                 </div>
             </div>
 
             <div class="card shadow card-primary">
                 <div class="card-header">
-                    <h4>List Kelas</h4>
+                    <h4>List Mata Pelajaran</h4>
 
                     <div class="card-header-action">
-                        <a href="{{ route('kelas.h_tambah') }}" class="btn btn-primary">
+                        <a href="{{ route('mata_pelajaran/h_tambah') }}" class="btn btn-primary">
                             <i class="fas fa-sm fa-plus"></i> Tambah data
                         </a>
                     </div>
@@ -28,8 +28,7 @@
                         <table id="datatable" class="table table-borderless dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Kelas</th>
-                                    <th>Jurusan</th>
+                                    <th>Mata Pelajaran</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -58,15 +57,11 @@
                 ],
                 order: [],
                 ajax: {
-                    url: "{{ route('kelas.data') }}",
+                    url: "{{ route('mata_pelajaran.data') }}",
                 },
                 columns: [{
-                        data: 'kelas',
-                        name: 'kelas'
-                    },
-                    {
-                        data: 'jurusan',
-                        name: 'jurusan'
+                        data: 'nama',
+                        name: 'nama'
                     },
                     {
                         data: 'aksi',
@@ -80,7 +75,7 @@
         $(document).on('click', '.hapus', function(e) {
             let id = $(this).attr('data-id');
             Swal.fire({
-                title: 'Hapus Kelas?',
+                title: 'Hapus Mata Pelajaran?',
                 text: "Data telah dihapus tidak bisa di kembalikan!",
                 icon: 'warning',
                 confirmButton: true,
@@ -94,7 +89,7 @@
                 if (result.value) {
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('kelas.p_hapus') }}",
+                        url: "{{ route('mata_pelajaran.p_hapus') }}",
                         data: {
                             id: id,
                             _token: "{{ csrf_token() }}"

@@ -1,24 +1,24 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelas')
+@section('title', 'Guru')
 @section('content')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kelas</h1>
+                <h1>Guru</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
                     {{-- <div class="breadcrumb-item"><a href="#">Tag</a></div> --}}
-                    <div class="breadcrumb-item">Kelas</div>
+                    <div class="breadcrumb-item">Guru</div>
                 </div>
             </div>
 
             <div class="card shadow card-primary">
                 <div class="card-header">
-                    <h4>List Kelas</h4>
+                    <h4>List Guru</h4>
 
                     <div class="card-header-action">
-                        <a href="{{ route('kelas.h_tambah') }}" class="btn btn-primary">
+                        <a href="{{ route('guru.h_tambah') }}" class="btn btn-primary">
                             <i class="fas fa-sm fa-plus"></i> Tambah data
                         </a>
                     </div>
@@ -28,8 +28,15 @@
                         <table id="datatable" class="table table-borderless dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Kelas</th>
-                                    <th>Jurusan</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Alamat</th>
+                                    <th>Email Pribadi</th>
+                                    <th>No Telepon</th>
+                                    <th>Bidang Pelajaran</th>
+                                    <th>Masa Awal Bergabung</th>
+                                    <th>Masa Akhir Bergabung</th>
+                                    <th>Status</th>
+                                    <th>Foto</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -58,15 +65,47 @@
                 ],
                 order: [],
                 ajax: {
-                    url: "{{ route('kelas.data') }}",
+                    url: "{{ route('guru.data') }}",
                 },
                 columns: [{
-                        data: 'kelas',
-                        name: 'kelas'
+                        data: 'nama_lengkap',
+                        name: 'nama_lengkap'
                     },
                     {
-                        data: 'jurusan',
-                        name: 'jurusan'
+                        data: 'alamat',
+                        name: 'alamat'
+                    },
+                    {
+                        data: 'email_pribadi',
+                        name: 'email_pribadi'
+                    },
+                    {
+                        data: 'no_telepon',
+                        name: 'no_telepon'
+                    },
+                    {
+                        data: 'bidang_pelajaran',
+                        name: 'bidang_pelajaran'
+                    },
+
+                    {
+                        data: 'masa_awal_bergabung',
+                        name: 'masa_awal_bergabung'
+                    },
+
+                    {
+                        data: 'masa_akhir_bergabung',
+                        name: 'masa_akhir_bergabung'
+                    },
+
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+
+                    {
+                        data: 'foto',
+                        name: 'foto'
                     },
                     {
                         data: 'aksi',
@@ -80,7 +119,7 @@
         $(document).on('click', '.hapus', function(e) {
             let id = $(this).attr('data-id');
             Swal.fire({
-                title: 'Hapus Kelas?',
+                title: 'Hapus Guru?',
                 text: "Data telah dihapus tidak bisa di kembalikan!",
                 icon: 'warning',
                 confirmButton: true,
@@ -94,7 +133,7 @@
                 if (result.value) {
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('kelas.p_hapus') }}",
+                        url: "{{ route('guru.p_hapus') }}",
                         data: {
                             id: id,
                             _token: "{{ csrf_token() }}"

@@ -4,10 +4,12 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkstrakurikulerController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KalenderAkademikController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Auth;
@@ -200,7 +202,41 @@ Route::prefix('dashboard')
         Route::post('kelas.p_hapus', [KelasController::class, 'p_hapus'])
             ->name('kelas.p_hapus');
         Route::get('kelas.listJurusan', [KelasController::class, 'listJurusan'])
-        ->name('kelas.listJurusan');
+            ->name('kelas.listJurusan');
+        Route::get('kelas/listJurusan/{id}', [KelasController::class, 'jurusanByKelas'])
+            ->name('kelas.jurusanByKelas');
+
+
+        // guru
+        Route::get('guru', [GuruController::class, 'index'])
+            ->name('guru');
+        Route::get('guru.data', [GuruController::class, 'data'])
+            ->name('guru.data');
+        Route::get('guru.h_tambah', [GuruController::class, 'h_tambah'])
+            ->name('guru.h_tambah');
+        Route::post('guru.p_tambah', [GuruController::class, 'p_tambah'])
+            ->name('guru.p_tambah');
+        Route::get('guru.h_edit', [GuruController::class, 'h_edit'])
+            ->name('guru.h_edit');
+        Route::post('guru.p_hapus', [GuruController::class, 'p_hapus'])
+            ->name('guru.p_hapus');
+
+
+        // mata pelajaran
+        Route::get('mata_pelajaran', [MataPelajaranController::class, 'index'])
+            ->name('mata_pelajaran');
+        Route::get('mata_pelajaran.data', [MataPelajaranController::class, 'data'])
+            ->name('mata_pelajaran.data');
+        Route::get('mata_pelajaran/h_tambah', [MataPelajaranController::class, 'h_tambah'])
+            ->name('mata_pelajaran/h_tambah');
+        Route::post('mata_pelajaran.p_tambah', [MataPelajaranController::class, 'p_tambah'])
+            ->name('mata_pelajaran.p_tambah');
+        Route::get('mata_pelajaran/h_edit/{id}', [MataPelajaranController::class, 'h_edit'])
+            ->name('mata_pelajaran.h_edit');
+        Route::post('mata_pelajaran.p_edit', [MataPelajaranController::class, 'p_edit'])
+            ->name('mata_pelajaran.p_edit');
+        Route::post('mata_pelajaran.p_hapus', [MataPelajaranController::class, 'p_hapus'])
+            ->name('mata_pelajaran.p_hapus');
     });
 
 
